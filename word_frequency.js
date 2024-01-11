@@ -31,17 +31,42 @@ const STOP_WORDS = [
 ]
 
 function printWordFreq(file, callback) {
-  // Read in `file` and print out the frequency of words in that file.
-  fs.readFile(file, 'utf8', (err, data) => {
+    fs.readFile(file, 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading the file:', err)
       process.exit(1)
     }
+
+
+    countWords(text) 
+      if (text.length === 0) {
+        return {};
+      }
+           text = text.toLowerCase();
+  
+      /* regular expression to tokenise by word while ignoring punctuation. */
+      const pattern = /\w+/g;
+      text = text.match(pattern);
+  
+      let wordFrequency = {};
+  
+      /* Output an object with results. */
+      wordFrequency = text.reduce((wordFrequencyMap, word) => {
+        if (Object.hasOwnProperty.call(wordFrequency, word))
+        wordFrequency[word] = 1;
+        else wordFrequency[word] += 1;
+  
+        return wordFrequency;
+      }, {});
+  
+      return wordFrequency;
+    }
+  
     // TODO: write code to count the words in the file
-    console.log('Initial data read from file: ', data)
+    console.log('Initial data read from file: ', data
     callback('Your word count results should be passed in to this callback')
   })
-}
+},
 
 printWordFreq(filePath, (wordCount) => {
   console.log('The results from your word counts:', wordCount)
